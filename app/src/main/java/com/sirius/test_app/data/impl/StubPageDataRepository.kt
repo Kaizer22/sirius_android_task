@@ -33,9 +33,9 @@ class StubPageDataRepository @Inject constructor(): PageDataRepository {
                 Log.d("gen", rate.toString())
                 Single.just(SimpleTestDataProvider.apiGameDetails.copy(rating = rate)).toFlowable()
             }
-        // Каждую минуту добавляется комментарий
-        private val reviewsFlowable: Flowable<List<ApiReview>> = //Flowable.fromIterable(r)
-            Flowable.interval(2,5, TimeUnit.SECONDS).flatMap {
+        // Каждые 10с добавляется отзыв
+        private val reviewsFlowable: Flowable<List<ApiReview>> =
+            Flowable.interval(3,10, TimeUnit.SECONDS).flatMap {
                 val rate: Float = Math.round((random.nextFloat() * 5 * 10.0)).toFloat() / 10
                 Log.d("reviews", rate.toString())
                 val r = ApiReview(userImage = "https://pp.userapi.com/c630320/v630320617/3a2ea/eJws3kUIasg.jpg",

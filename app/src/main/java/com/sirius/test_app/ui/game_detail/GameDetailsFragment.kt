@@ -42,7 +42,7 @@ class GameDetailsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Применения кастомного поведения для логотипа, названия и
+        // Применение кастомного поведения для логотипа, названия и
         // динамического затенения строки состояния
         ((binding.logoContainer.layoutParams) as CoordinatorLayout.LayoutParams).behavior = LogoScrollBehavior(
             binding.nameHeader,
@@ -59,7 +59,7 @@ class GameDetailsFragment: Fragment() {
         observeViewStateUpdates(adapter)
     }
 
-    // Подписываемя на изменение состояния viewModel
+    // Подписываемся на изменение состояния viewModel
     // при изменении перерисовываем экран с новыми данными из state
     private fun observeViewStateUpdates(adapter: ReviewAdapter) {
         Log.d(TAG, "test2")
