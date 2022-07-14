@@ -38,7 +38,8 @@ class StubPageDataRepository @Inject constructor(): PageDataRepository {
             Flowable.interval(2,5, TimeUnit.SECONDS).flatMap {
                 val rate: Float = Math.round((random.nextFloat() * 5 * 10.0)).toFloat() / 10
                 Log.d("reviews", rate.toString())
-                val r = ApiReview(userImage = "TEST", userName = "TEST TEST${rate}", date = "July 14, 2022", message = "Hello world")
+                val r = ApiReview(userImage = "https://pp.userapi.com/c630320/v630320617/3a2ea/eJws3kUIasg.jpg",
+                    userName = "TEST TEST${rate}", date = "July 14, 2022", message = "Hello world")
                 val l = concatenate(SimpleTestDataProvider.apiReviews, mutableListOf(r))
                 SimpleTestDataProvider.apiReviews = l as MutableList<ApiReview>
                 Single.just(l).toFlowable()

@@ -35,7 +35,7 @@ class GameDetailsFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -51,6 +51,10 @@ class GameDetailsFragment: Fragment() {
         val adapter = ReviewAdapter(requireContext())
         binding.reviewsList.adapter = adapter
         binding.reviewsList.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.interactiveRatingBar.setOnRatingBarChangeListener { ratingBar, fl, b ->
+            binding.rating.text = ratingBar.rating.toString()
+        }
         //Log.d(TAG, "test")
         observeViewStateUpdates(adapter)
     }
@@ -81,10 +85,10 @@ class GameDetailsFragment: Fragment() {
             addTags(binding, state.gameDetails.tags)
 
             Glide.with(requireContext())
-                .load(state.gameDetails?.logo)
+                .load(state.gameDetails.logo)
                 .into(logo)
             Glide.with(requireContext())
-                .load(state.gameDetails?.image)
+                .load(state.gameDetails.image)
                 .into(pageImg)
         }
     }
