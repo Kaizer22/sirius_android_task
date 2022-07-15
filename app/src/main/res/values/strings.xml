@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Sirius</string>
+    <!-- System -->
+    <string name="app_name">Sirius Android Task</string>
+
+    <!-- Placeholders -->
+    <string name="tag_placeholder">TAG</string>
+    <string name="author_name_placeholder">Author Name</string>
+    <string name="comment_placeholder">“Once you start to learn its secrets, there’s a wild and exciting variety of play here that’s unmatched, even by its peers.”</string>
+    <string name="comment_date_placeholder">February 14, 2019</string>
+    <string name="description_placeholder">Dota 2 is a multiplayer online battle arena (MOBA) game which has two teams of five players compete to collectively destroy a large structure defended by the opposing team known as the &quot;Ancient&quot;, whilst defending their own.</string>
+    <string name="downloads_count_placeholder">70M Reviews</string>
+    <string name="dota_2_placeholder">DoTA 2</string>
+    <string name="grade_counter_placeholder">70M</string>
+    <string name="rating_placeholder">4.9</string>
+
+    <!-- Buttons -->
+    <string name="button_install">Install</string>
+
+    <!-- Text -->
+    <string name="review_amp_ratings"><![CDATA[Review & Ratings]]></string>
+
 </resources>

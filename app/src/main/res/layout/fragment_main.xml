@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Корневой элемент с отрисовокй под строкой состояния -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/background"
+    android:fitsSystemWindows="false"
+    android:id="@+id/main_container">
+
+    <!-- Для работы с CollapsingToolbar -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Затемнение строки сосотояния при скроллинге -->
+        <View
+            android:id="@+id/top_shadow_dynamic"
+            android:elevation="1dp"
+            android:alpha="0"
+            android:layout_width="match_parent"
+            android:layout_height="126dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/image_blur_dark"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="top|center"
+            />
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="317dp"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginStart="99dp"
+                app:expandedTitleMarginEnd="64dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    app:layout_collapseMode="parallax">
+
+                    <!-- Затемнение строки состояния и верхней части CollapsingToolbar -->
+                    <View
+                        android:id="@+id/top_shadow"
+                        android:elevation="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="126dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:background="@drawable/image_blur"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <ImageView
+                        android:id="@+id/page_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="-20dp"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="centerCrop"
+                        android:src="@color/separator"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageButton
+                        android:id="@+id/button_more"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginEnd="24dp"
+                        android:elevation="2dp"
+                        android:background="@drawable/control_button_shape"
+                        android:src="@drawable/ic_more_square"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/button_back"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="56dp"
+                        android:background="@drawable/control_button_shape"
+                        android:elevation="2dp"
+                        android:src="@drawable/ic_arrow_left"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- "Плавающий" контейнер с лого -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/logo_container"
+            android:layout_width="88dp"
+            android:layout_height="132dp"
+            android:layout_marginStart="24dp"
+            android:fitsSystemWindows="true"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="bottom|left"
+            >
+
+            <ImageView
+                android:id="@+id/logo_borders"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:background="@drawable/logo_borders_shape"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@color/text_dark"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/logo_borders"
+                app:layout_constraintTop_toTopOf="@+id/logo_borders" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Основной контент -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/description_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp">
+
+                <TextView
+                    android:id="@+id/name_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="102dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sk_modernist_bold"
+                    android:text="NAME"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Прсмотр текущего рейтинга -->
+                <!-- С размерами RatingBar очень удобно работать... -->
+                <RatingBar
+                    android:id="@+id/indicator_rating_bar"
+                    style="@style/RoundedStarRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:isIndicator="true"
+                    android:max="5"
+                    android:numStars="5"
+                    android:rating="4.9"
+                    android:scaleX=".25"
+                    android:scaleY=".25"
+                    android:stepSize="0.1"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    app:layout_constraintStart_toStartOf="@+id/name_header"
+                    app:layout_constraintTop_toBottomOf="@+id/name_header" />
+
+                <TextView
+                    android:id="@+id/grade_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sk_modernist_regular"
+                    android:text="COUNTER"
+                    android:textColor="@color/text_extra_thin"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/name_header"
+                    app:layout_constraintTop_toBottomOf="@+id/name_header" />
+
+
+                <!-- Контейнер для неограниченного количества тегов -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tags_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade_counter">
+
+                    <!-- Построчный перенос тегов, если не хватает места
+                    (добавляются программно)-->
+                    <androidx.constraintlayout.helper.widget.Flow
+                        android:id="@+id/flow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:flow_horizontalAlign="start"
+                        app:flow_horizontalBias="0"
+                        app:flow_horizontalGap="10dp"
+                        app:flow_maxElementsWrap="10"
+                        app:flow_verticalBias="0"
+                        app:flow_verticalGap="8dp"
+                        app:flow_wrapMode="aligned"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/sk_modernist_regular"
+                    android:lineHeight="19dp"
+                    android:text="DESCRIPTION"
+                    android:textColor="@color/text_thin"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tags_flow" />
+
+                <TextView
+                    android:id="@+id/review_and_ratings_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sk_modernist_bold"
+                    android:text="@string/review_amp_ratings"
+                    android:textColor="@color/text_bold"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sk_modernist_bold"
+                    android:text="0.0"
+                    android:textColor="@color/text_bold"
+                    android:textSize="48sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/review_and_ratings_header" />
+
+                <!-- Получение оценки от текущего пользователя -->
+                <RatingBar
+                    android:id="@+id/interactive_rating_bar"
+                    style="@style/RoundedStarRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="-24dp"
+                    android:isIndicator="false"
+                    android:max="5"
+                    android:numStars="5"
+                    android:rating="4.9"
+                    android:scaleX=".25"
+                    android:scaleY=".25"
+                    android:stepSize="0.1"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    app:layout_constraintStart_toEndOf="@+id/rating"
+                    app:layout_constraintTop_toTopOf="@+id/grades_count_bottom" />
+
+                <TextView
+                    android:id="@+id/grades_count_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/sk_modernist_regular"
+                    android:text="REVIEWS COUNT"
+                    android:textColor="@color/text_thin"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/rating"
+                    app:layout_constraintStart_toEndOf="@+id/rating"
+                    app:layout_constraintTop_toTopOf="@+id/rating"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <View
+                    android:id="@+id/comments_section_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="36dp"
+                    android:background="@color/separator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rating" />
+
+                <!-- Список отзывов -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reviews_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/comments_section_separator" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="36dp"
+                    android:backgroundTint="@color/button_accent"
+                    android:fontFamily="@font/sk_modernist_bold"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="ACTION"
+                    android:textAllCaps="false"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/background"
+                    android:textSize="20sp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reviews_list" />
+
+                <!-- Cвечение под кнопкой действия -->
+                <View
+                    android:id="@+id/button_install_shadow"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="-6dp"
+                    android:background="@drawable/button_glowing"
+                    app:layout_constraintBottom_toBottomOf="@+id/button_action"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
